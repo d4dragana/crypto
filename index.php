@@ -1,8 +1,9 @@
 <?php
-include_once"header.php";
+    include_once "header.php";
+?>
 
-echo '<h1>Pozdrav</h1>';
+<a href="users.php">Uporabniki</a>
 
-
-include_once "footer.php";
+<?php
+    include_once "footer.php";
 ?>
