@@ -51,9 +51,10 @@
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Ponovi geslo</label>
 
-                        </div>
-                    </div> <input class="form-control" type="password" name="pass2" placeholder="Ponovno vnesite geslo"
+                         <input class="form-control" type="password" name="pass2" placeholder="Ponovno vnesite geslo"
                         required="required" /><br />
+                        </div>
+                    </div>
                     <br />
                     <div id="success"></div>
                     <div class="form-group"><button class="btn btn-primary btn-xl" id="sendMessageButton"
