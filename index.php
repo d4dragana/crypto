@@ -1,5 +1,13 @@
 <?php
-    include_once "header.php";
+
+include_once "header.php";
+
+if (isset($_SESSION['user_id'])) {
+    echo 'PRIJAVLJEN';
+}
+else{
+    echo 'NEPRIJAVLJEN';
+}
 ?>
 
 <a href="users.php">Uporabniki</a>
