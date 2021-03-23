@@ -31,11 +31,15 @@ $stmt->execute();
 while ($row=$stmt->fetch() ) {
     echo '<div class="col-md-6 col-lg-4 mb-5">';
     echo '<div class="portfolio-item mx-auto">';
+    echo '<a href="cryptocurrency.php?id='.$row['id'].'">';
     echo '<div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">';
     echo '<div class="portfolio-item-caption-content text-center text-white">'.$row['current_price'].'</div>';
     echo '</div>';
-    echo '<img class="img-fluid" src="assets/img/portfolio/cabin.png" alt="" />';
+
+    echo '<img class="img-fluid" src="'.$row['logo'].'" alt="" height = "150" width="150"/>';
     echo '<h3 class="justify-content-center row align-items-center">'.$row['title'].'</hr>';
+
+    echo '</a>';
     echo '</div>';
     echo '</div>';
 }
