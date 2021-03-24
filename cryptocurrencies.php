@@ -3,7 +3,7 @@ include_once "header.php";
 ?>
 
 
-<a href="cryptocurrencies_add.php" class="btn btn-primary">Dodaj valuto</a>
+<a href="cryptocurrency_add.php" class="btn btn-primary">Dodaj valuto</a>
 <br />
 
 <section class="page-section portfolio">

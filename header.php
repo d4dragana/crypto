@@ -20,6 +20,11 @@ include_once "session.php";
         type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+ <!-- pisava font-awesome za zvezdice v ocenjevanju  ne deluje v mozilla firefox, v google chrome pa deluje -->
+   
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
+
+
 </head>
 
 <body id="page-top">
