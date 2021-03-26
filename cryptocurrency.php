@@ -9,8 +9,8 @@ $stmt = $pdo->prepare($query);
 $stmt->execute([$id]);
 
 if ($stmt->rowCount() != 1){
-    header("Location:index.php");
-    die();
+ header("Location:index.php");
+ die();
 }
 
 $crypto = $stmt->fetch();
@@ -39,8 +39,8 @@ $crypto = $stmt->fetch();
         <p class="masthead-subheading font-weight-light mb-0"><?php echo $crypto['description'];?></p>
         <div class="crypto_price">Trenutna cena: <span><?php echo $crypto['current_price'];?></span></div>
         <div class="crypto_rating">Trenutna ocena: <span><?php echo number_format($crypto['rating'],1,',',".");
-        //number_format($crypto['rating'],število decimalk,'razdelilnik za cela števila',"oznaka za tisočice")
-        ?>
+ //number_format($crypto['rating'],število decimalk,'razdelilnik za cela števila',"oznaka za tisočice")
+ ?>
             </span></div>
     </div>
 </section>
@@ -73,7 +73,7 @@ $crypto = $stmt->fetch();
         <form action="comment_insert.php" method="post">
             <input type="hidden" name="id" value="<?php echo $crypto['id'];?>" />
             <textarea name="content" rows="5" cols="15">
-            </textarea><br />
+ </textarea><br />
             <input type="submit" value="Komentiraj" class="btn btn-primary" />
         </form>
 
@@ -85,12 +85,53 @@ $stmt = $pdo->prepare($query);
 $stmt->execute([$id]);
 
 while ($row =$stmt->fetch()){
-    echo '<div class="komentar">';
-    echo '<div class="oseba">'.getFullName($row['user_id']).' ('.date("j. n. Y H:i",strtotime($row['date_modify'])).')</div>';
-    echo '<div class="vsebina">'.$row['content'].'</div>';
-    echo '</div>';
+ echo '<div class="komentar">';
+ //print_r($row);
+ //ali je trenutno prijavljeni uporabnik avtor komentarja
+if($_SESSION['user_id']==$row['user_id']){
+ echo '<a href="comment_delete.php?id='.$row['id'].'" onclick="return confirm(\'Prepričani?\')">x</a>';
+ echo ' <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal'.$row['id'].'">u</div>';
+//modalno okno za urejanje
+ echo ' <div class="portfolio-modal modal fade" id="portfolioModal'.$row['id'].'" tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label" aria-hidden="true">';
+ echo ' <div class="modal-dialog modal-xl" role="document">'; 
+ echo ' <div class="modal-content">';
+ echo ' <button class="close" type="button" data-dismiss="modal" aria-label="Close"> '; 
+ echo ' <span aria-hidden="true"><i class="fas fa-times"></i></span> '; 
+ echo ' </button> '; 
+ echo ' <div class="modal-body text-center"> '; 
+ echo ' <div class="container"> ';
+ echo ' <div class="row justify-content-center"> ';
+ echo ' <div class="col-lg-8"> '; 
+ echo ' <!-- Portfolio Modal - Title--> '; 
+ echo ' <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal1Label">Uredi komentar</h2> ';
+ echo ' <!-- Icon Divider-->';
+ echo ' <div class="divider-custom">';
+ echo ' <div class="divider-custom-line"></div>';
+ echo ' <div class="divider-custom-icon"><i class="fas fa-star"></i></div> ';
+ echo ' <div class="divider-custom-line"></div> ';
+ echo ' </div>';
+ echo '<form action =comment_update.php" method ="post">'; 
+ echo ' <input type="hidden" name="id" value="'. $row['id'].'" />';
+ echo '<textarea name="content" rows="5" cols="25">'. $row['content'].'</textarea><br /> ';
+ echo '<input type="submit" value="Uredi" class="btn btn-primary" /> ';
+ echo '</form> ';
+ echo ' </div>';
+ echo '</div>';
+ echo ' </div>';
+ echo ' </div>';
+ echo ' </div>';
+ echo '</div>';
+ echo '</div>';
 }
-    ?>
+
+echo '<div class="oseba">'.getFullName($row['user_id']).' ('.date("j. n. Y H:i",strtotime($row['date_modify'])).')</div>';
+echo '<div class="vsebina">'.$row['content'].'</div>';
+echo '</div>';
+
+
+
+}
+?>
 
     </div>
 </div>

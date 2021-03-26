@@ -10293,4 +10293,28 @@ label.star:hover {
 label.star:before {
   content: '\f006';
   font-family: FontAwesome
+}/*rating stars css*/
+
+
+
+/*Oblika komentarjev*/
+.komentar{
+  background-color: #4ceee6;
+  border-color: #062c33;
+  border-width: 2px;
+  border-style: solid;
+
+  margin-top: 5px;
+  padding: 10px;
 }
+
+.komentar .oseba{
+  font-style: italic;
+  font-size: 0.8em;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.komentar .vsebina{
+  font-weight: bold;
+}
+/*Oblika komentarjev*/
