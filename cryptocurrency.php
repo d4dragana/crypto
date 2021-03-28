@@ -17,10 +17,17 @@ $crypto = $stmt->fetch();
 
 ?>
 
+<?php
+//prikaže povezavo samo administratorjem
+if (admin()){
+?>
+
 <a href="cryptocurrency_delete.php?id=<?php echo $crypto['id'];?>" class="btn btn-primary"
     onclick="return confirm('Prepričani?')">Izbriši</a>
-
 <a href="cryptocurrency_edit.php?id=<?php echo $crypto['id'];?>" class="btn btn-primary">Uredi</a>
+<?php
+}
+?>
 
 <section class="masthead bg-primary text-white text-center">
 
@@ -92,9 +99,7 @@ if($_SESSION['user_id']==$row['user_id']){
  echo '<a href="comment_delete.php?id='.$row['id'].'" onclick="return confirm(\'Prepričani?\')">x</a>';
  echo ' <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal'.$row['id'].'">u</div>';
 //modalno okno za urejanje
- echo ' <div class="portfolio-modal modal fade" id="portfolioModal'.$row['id'].'" tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label" aria-hidden="true">';
- echo ' <div class="modal-dialog modal-xl" role="document">'; 
- echo ' <div class="modal-content">';
+ echo ' <div class="portfolio-modal modal fade" id="portfolioModal'.$row['id'].'" tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label" aria-hidden="true">'; echo ' <div class="modal-dialog modal-xl" role="document">'; echo ' <div class="modal-content">';
  echo ' <button class="close" type="button" data-dismiss="modal" aria-label="Close"> '; 
  echo ' <span aria-hidden="true"><i class="fas fa-times"></i></span> '; 
  echo ' </button> '; 
@@ -110,7 +115,7 @@ if($_SESSION['user_id']==$row['user_id']){
  echo ' <div class="divider-custom-icon"><i class="fas fa-star"></i></div> ';
  echo ' <div class="divider-custom-line"></div> ';
  echo ' </div>';
- echo '<form action =comment_update.php" method ="post">'; 
+ echo '<form action ="comment_update.php" method ="post">'; 
  echo ' <input type="hidden" name="id" value="'. $row['id'].'" />';
  echo '<textarea name="content" rows="5" cols="25">'. $row['content'].'</textarea><br /> ';
  echo '<input type="submit" value="Uredi" class="btn btn-primary" /> ';

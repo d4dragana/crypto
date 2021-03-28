@@ -1,5 +1,6 @@
 <?php
 include_once "session.php";
+adminOnly();
 include_once "database.php";
 
 $id = (int) $_POST['id'];    //katero valuto urejamo
