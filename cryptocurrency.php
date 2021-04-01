@@ -47,10 +47,84 @@ if (admin()){
         <div class="crypto_price">Trenutna cena: <span><?php echo $crypto['current_price'];?></span></div>
         <div class="crypto_rating">Trenutna ocena: <span><?php echo number_format($crypto['rating'],1,',',".");
  //number_format($crypto['rating'],število decimalk,'razdelilnik za cela števila',"oznaka za tisočice")
- ?>
-            </span></div>
+ ?></span>
+            </div>
     </div>
+    <?php
+if (admin()) {
+?>
+    <div class="upload_slik">
+        <form action="image_insert.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?php echo $crypto['id'];?>" />
+            <input type="text" name="title" placeholder="Vnesi naslov fotografije" /><br />
+            <input type="file" name="url" required="required" /><br />
+            <input type="submit" value="Naloži" />
+        </form>
+    </div>
+    <?php
+}
+?>
 </section>
+
+<div class="container">
+<?php
+        $query = "SELECT * FROM images WHERE cryptocurrency_id=?";
+        $stmt=$pdo->prepare($query);
+        $stmt->execute([$id]);
+        // koliko slike je v bazi zato kriptovaluto
+        $st = $stmt->rowCount();
+        if ($st >0){
+?>
+    <div class="bd-example">
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <?php
+        for($i=0;$i<$st;$i++){
+            if($i==0){
+            echo '<li data-target="#carouselExampleCaptions" data-slide-to="'.$i.'" class="active"></li>'."\n";
+            }
+            else {
+            echo '<li data-target="#carouselExampleCaptions" data-slide-to="'.$i.'"></li>'."\n";
+        }
+    }
+    ?>
+
+            </ol>
+            <div class="carousel-inner">
+                <?php
+                $i=0;
+        while($row=$stmt->fetch()){
+            if ($i==0)
+                echo '<div class="carousel-item active">'."\n";
+            else
+                echo '<div class="carousel-item">'."\n";
+
+            echo '<img src="'.$row['url'].'" class="d-block w-100" alt="slika" />'."\n";
+            echo '<div class="carousel-caption d-none d-md-block">'."\n";
+            echo '<h5>'.$row['title'].'</h5>'."\n";
+            echo '</div>'."\n";
+            echo '</div>'."\n";
+            $i++;
+        }
+?>
+
+            </div>
+
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Predhodnje</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Naslednje</span>
+            </a>
+        </div>
+    </div>
+<?php
+        }
+        ?>
+</div>
+
 
 <div class="container d-flex justify-content-center mt-20">
     <div class="row">
@@ -74,6 +148,7 @@ if (admin()){
         </div>
     </div>
 </div>
+
 
 <div class="komentarji" id="komentarji">
     <div class="obrazec">

@@ -2,3 +2,5 @@
 database.php
 *.log
 uploads/
+images/
+
