@@ -3,4 +3,6 @@ database.php
 *.log
 uploads/
 images/
+avatars/
+
 
