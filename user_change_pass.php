@@ -15,12 +15,13 @@ if(!empty($pass) && ($pass==$pass2)) {
 
     $stmt = $pdo->prepare($query);
     $stmt->execute([$pass,$id]);
-
+    odziv("Geslo zamenjano");
     header("Location: profile.php");
     die();
 }
 
 else {
+    odziv("Geslo ni bilo zamenjano");
     header("Location: profile.php");
     die();
 

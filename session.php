@@ -36,4 +36,9 @@ function adminOnly(){
     }
 }
 
+function odziv($message) {
+    //session_start();
+    $_SESSION['odziv'] = $message;
+}
+
 ?>

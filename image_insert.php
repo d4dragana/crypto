@@ -44,6 +44,7 @@ if($uploadOk == 1) {
         $query = "INSERT INTO images(title, url, cryptocurrency_id, user_id) VALUES(?,?,?,?)";
         $stmt = $pdo->prepare($query);
         $stmt->execute([$title,$target_file,$id,$_SESSION['user_id']]);
+        odziv("Slika dodana");
 
         header("Location: cryptocurrency.php?id=$id");
         die();

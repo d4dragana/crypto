@@ -17,7 +17,7 @@ $query = "DELETE  FROM comments WHERE id = ? AND user_id = ?";
 $stmt = $pdo->prepare($query);
 $stmt->execute([$id, $user_id]);
 
-
+odziv("Komentar izbrisan");
     header("Location: cryptocurrency.php?id=$crypto_id#komentarji");
     die();
 

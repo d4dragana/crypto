@@ -16,6 +16,8 @@ if (!empty($id) && !empty($content)) {
 
 }
 
+odziv("Komentar dodan");
+
 header("Location: cryptocurrency.php?id=$id#komentarji");
 die();
 

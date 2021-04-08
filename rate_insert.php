@@ -20,6 +20,8 @@ if (!empty($id) && !empty($rate)) {
     $stmt->execute([$id, $id]);
 }
 
+odziv("Uspešno oddana ocena");
+
 header("Location: cryptocurrency.php?id=$id");
 die();
 

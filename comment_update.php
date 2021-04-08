@@ -18,7 +18,7 @@ $query = "UPDATE comments SET content=? WHERE id = ? AND user_id = ?";
 $stmt = $pdo->prepare($query);
 $stmt->execute([$content, $id, $user_id]);
 
-
+odziv("Komentar posodobljen");
  header("Location: cryptocurrency.php?id=$crypto_id#komentarji");
  die();
 

@@ -74,6 +74,9 @@ include_once "session.php";
         //pogledam, če obstaja odziv
             if(isset($_SESSION['odziv'])){
                 echo '<div id="odziv">'.$_SESSION['odziv'].'</div>';
+
+                //enkrat je izpisal, zato ga lahko izbrišem
+                unset($_SESSION['odziv']);
             }
         ?>
         
